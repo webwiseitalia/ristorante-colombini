@@ -1,257 +1,202 @@
 import { Link } from 'react-router-dom'
-import { Phone, MapPin, Clock, Mail, Instagram, Facebook, Navigation, Car, Plane, Train } from 'lucide-react'
-import SectionHeading from '../components/SectionHeading'
-import WaveDecoration from '../components/WaveDecoration'
+import { useReveal, useStagger } from '../hooks/useGsap'
+import grigliata from '../assets/foto/foto-9.webp'
 
 const distances = [
-  { city: 'Roma centro', km: '62 km', time: '~50 min', icon: Car },
-  { city: 'Latina', km: '10 km', time: '~15 min', icon: Car },
-  { city: 'Nettuno', km: '15 km', time: '~20 min', icon: Car },
-  { city: 'Anzio', km: '20 km', time: '~25 min', icon: Car },
-  { city: 'Aeroporto Ciampino', km: '50 km', time: '~45 min', icon: Plane },
-  { city: 'Aeroporto Fiumicino', km: '70 km', time: '~55 min', icon: Plane },
+  { city: 'Roma', km: '62 km', time: '~50 min' },
+  { city: 'Latina', km: '10 km', time: '~15 min' },
+  { city: 'Nettuno', km: '15 km', time: '~20 min' },
+  { city: 'Anzio', km: '20 km', time: '~25 min' },
+  { city: 'Ciampino', km: '50 km', time: '~45 min' },
+  { city: 'Fiumicino', km: '70 km', time: '~55 min' },
+]
+
+const schedule = [
+  { day: 'Lunedì', hours: 'Chiuso', closed: true },
+  { day: 'Martedì', hours: '12:15 — 15:00', closed: false },
+  { day: 'Mercoledì', hours: '12:15 — 15:00', closed: false },
+  { day: 'Giovedì', hours: '12:15 — 15:00', closed: false },
+  { day: 'Venerdì', hours: '12:15 — 15:00 | 19:30 — 22:30', closed: false },
+  { day: 'Sabato', hours: '12:15 — 15:00 | 19:30 — 22:30', closed: false },
+  { day: 'Domenica', hours: '12:15 — 15:00', closed: false },
 ]
 
 export default function Contatti() {
+  const contactRef = useStagger({ stagger: 0.1, y: 40 })
+  const hoursRef = useReveal({ y: 40 })
+  const distancesRef = useStagger({ stagger: 0.06, y: 20 })
+
   return (
-    <div>
-      {/* Page Hero */}
-      <section className="relative bg-mare-800 py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
+    <div className="overflow-hidden">
+      {/* HERO */}
+      <section className="relative min-h-[50vh] flex items-end pb-16 md:pb-24 pt-32 bg-[#0a1f36]">
+        <div className="absolute inset-0 overflow-hidden">
+          <img src={grigliata} alt="" className="w-full h-full object-cover opacity-20" aria-hidden="true" />
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
-            Dove Siamo
-          </h1>
-          <div className="w-24 h-0.5 bg-sabbia-400 mx-auto mb-6" />
-          <p className="text-mare-200 text-xl font-heading italic">
-            Come raggiungerci
-          </p>
+        <div className="absolute top-0 left-0 w-[40%] h-full bg-[#c4a05c]/[0.03]" />
+        <div className="absolute bottom-16 right-12 pointer-events-none select-none" aria-hidden="true">
+          <span className="font-heading text-[clamp(10rem,28vw,22rem)] font-light leading-none text-white/[0.02]">D</span>
         </div>
-        <WaveDecoration color="#fffef9" className="absolute bottom-0 left-0 right-0" />
+        <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-[1px] bg-[#c4a05c]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Come raggiungerci</span>
+            </div>
+            <h1 className="font-heading font-light text-[clamp(3rem,8vw,7rem)] leading-[0.9] text-white tracking-[-0.02em]">
+              Dove <span className="italic text-[#c4a05c]">Siamo</span>
+            </h1>
+          </div>
+        </div>
       </section>
 
-      {/* Contact Info + Map */}
-      <section className="section-padding bg-crema-50">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Details */}
-            <div>
-              <h2 className="font-heading text-3xl font-semibold text-mare-800 mb-8">
-                Contatti
-              </h2>
+      {/* MAP - FULL WIDTH above, contact details overlapping below */}
+      <section className="bg-[#fffef9]">
+        {/* Full-width map */}
+        <div className="w-full bg-[#0a1f36]/[0.04]">
+          <iframe
+            title="Ristorante Colombini - Mappa"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.5!2d12.89!3d41.48!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia+Cursori+della+Palude+13%2C+Borgo+Montello!5e0!3m2!1sit!2sit!4v1700000000000"
+            width="100%" height="500" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+            className="w-full"
+          />
+        </div>
 
-              <div className="space-y-6">
-                {/* Address */}
-                <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-mare-50 flex items-center justify-center shrink-0">
-                    <MapPin size={22} className="text-mare-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold text-mare-800 mb-1">Indirizzo</h3>
-                    <p className="text-mare-600">Via Cursori della Palude 13</p>
-                    <p className="text-mare-600">04100 Borgo Montello (LT)</p>
-                    <p className="text-mare-500 text-sm mt-1">Frazione di Latina</p>
-                  </div>
+        {/* Contact details overlapping the bottom of the map */}
+        <div className="px-6 md:px-10 lg:px-16">
+          <div className="max-w-[1400px] mx-auto">
+            <div ref={contactRef} className="bg-[#fffef9] -mt-20 md:-mt-28 relative z-10 shadow-2xl shadow-black/[0.06] p-8 md:p-12 lg:p-16">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold block mb-4">Indirizzo</span>
+                  <p className="text-[#0a1f36] text-lg leading-relaxed">Via Cursori della Palude 13</p>
+                  <p className="text-[#0a1f36] text-lg">04100 Borgo Montello (LT)</p>
+                  <p className="text-[#0a1f36]/40 text-sm mt-2">Frazione di Latina</p>
                 </div>
-
-                {/* Phone */}
-                <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-mare-50 flex items-center justify-center shrink-0">
-                    <Phone size={22} className="text-mare-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold text-mare-800 mb-1">Telefono</h3>
-                    <a href="tel:07730481561" className="block text-mare-600 hover:text-mare-500 transition-colors">
-                      0773 0481561 <span className="text-sm text-mare-400">(fisso)</span>
-                    </a>
-                    <a href="tel:3925674723" className="block text-mare-600 hover:text-mare-500 transition-colors">
-                      392 567 4723 <span className="text-sm text-mare-400">(cellulare)</span>
-                    </a>
-                    <a
-                      href="https://wa.me/393925674723"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 mt-2 bg-green-500 text-white text-sm px-4 py-2 rounded-full hover:bg-green-600 transition-colors"
-                    >
-                      WhatsApp
-                    </a>
-                  </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold block mb-4">Telefono</span>
+                  <a href="tel:07730481561" className="block text-[#0a1f36] text-lg hover:text-[#c4a05c] transition-colors">0773 0481561</a>
+                  <a href="tel:3925674723" className="block text-[#0a1f36] text-lg hover:text-[#c4a05c] transition-colors">392 567 4723</a>
+                  <a href="https://wa.me/393925674723" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-[10px] uppercase tracking-[0.2em] font-bold text-[#0a1f36]/40 hover:text-[#c4a05c] transition-colors border-b border-[#0a1f36]/20 pb-0.5">
+                    Scrivi su WhatsApp
+                  </a>
                 </div>
-
-                {/* Social */}
-                <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-mare-50 flex items-center justify-center shrink-0">
-                    <Instagram size={22} className="text-mare-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold text-mare-800 mb-1">Social</h3>
-                    <a
-                      href="https://www.instagram.com/colombiniristorante"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-mare-600 hover:text-mare-500 transition-colors"
-                    >
-                      @colombiniristorante
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Map */}
-            <div>
-              <h2 className="font-heading text-3xl font-semibold text-mare-800 mb-8">
-                Mappa
-              </h2>
-              <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-                <iframe
-                  title="Ristorante Colombini - Mappa"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.5!2d12.89!3d41.48!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia+Cursori+della+Palude+13%2C+Borgo+Montello!5e0!3m2!1sit!2sit!4v1700000000000"
-                  width="100%"
-                  height="400"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full"
-                />
-                <div className="p-4 bg-mare-50 flex items-center gap-3">
-                  <Navigation size={16} className="text-mare-500" />
-                  <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=Via+Cursori+della+Palude+13+Borgo+Montello+LT"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-mare-600 hover:text-mare-500 text-sm font-bold transition-colors"
-                  >
-                    Apri in Google Maps per le indicazioni stradali
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold block mb-4">Social</span>
+                  <a href="https://www.instagram.com/colombiniristorante" target="_blank" rel="noopener noreferrer" className="text-[#0a1f36] hover:text-[#c4a05c] transition-colors">
+                    @colombiniristorante
                   </a>
                 </div>
               </div>
+              {/* Google Maps link */}
+              <div className="mt-8 pt-6 border-t border-[#0a1f36]/[0.06]">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Cursori+della+Palude+13+Borgo+Montello+LT" target="_blank" rel="noopener noreferrer"
+                  className="inline-block text-[10px] uppercase tracking-[0.2em] font-bold text-[#0a1f36]/40 hover:text-[#c4a05c] transition-colors border-b border-[#0a1f36]/20 pb-0.5">
+                  Apri in Google Maps
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Hours */}
-      <section className="bg-white py-16">
-        <div className="container-custom px-4">
-          <SectionHeading
-            title="Orari di apertura"
-            subtitle="Aperti tutti i giorni a pranzo, venerdì e sabato anche a cena"
-          />
-
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-crema-50 rounded-2xl overflow-hidden shadow-sm">
-              {[
-                { day: 'Lunedì', hours: 'Chiuso', closed: true },
-                { day: 'Martedì', hours: '12:15 - 15:00' },
-                { day: 'Mercoledì', hours: '12:15 - 15:00' },
-                { day: 'Giovedì', hours: '12:15 - 15:00' },
-                { day: 'Venerdì', hours: '12:15 - 15:00 | 19:30 - 22:30', dinner: true },
-                { day: 'Sabato', hours: '12:15 - 15:00 | 19:30 - 22:30', dinner: true },
-                { day: 'Domenica', hours: '12:15 - 15:00', note: 'Solo pranzo' },
-              ].map((slot, idx) => (
-                <div
-                  key={idx}
-                  className={`flex items-center justify-between px-8 py-4 ${
-                    idx < 6 ? 'border-b border-mare-100' : ''
-                  } ${slot.closed ? 'bg-vino-50' : ''}`}
-                >
-                  <span className={`font-heading text-lg font-semibold ${
-                    slot.closed ? 'text-vino-500' : 'text-mare-800'
-                  }`}>
-                    {slot.day}
-                  </span>
-                  <div className="text-right">
-                    <span className={`text-sm ${slot.closed ? 'text-vino-500 font-bold' : 'text-mare-600'}`}>
-                      {slot.hours}
-                    </span>
-                    {slot.dinner && (
-                      <span className="ml-2 text-xs bg-mare-100 text-mare-600 px-2 py-0.5 rounded-full">
-                        + cena
-                      </span>
-                    )}
-                    {slot.note && (
-                      <span className="ml-2 text-xs text-mare-400">({slot.note})</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-center text-mare-500 text-sm mt-6">
-              <Clock size={14} className="inline mr-1" />
-              Ferie: Settembre e Gennaio
-            </p>
-          </div>
+      {/* HOURS - horizontal schedule cards instead of vertical list */}
+      <section ref={hoursRef} className="bg-[#f9f3e8] py-24 md:py-32 px-6 md:px-10 lg:px-16 relative overflow-hidden">
+        {/* Decorative watermark */}
+        <div className="absolute top-1/2 -translate-y-1/2 -right-12 pointer-events-none select-none" aria-hidden="true">
+          <span className="font-heading text-[clamp(10rem,20vw,18rem)] font-light leading-none text-[#0a1f36]/[0.02]">H</span>
         </div>
-      </section>
-
-      {/* How to get there */}
-      <section className="section-padding bg-crema-50">
-        <div className="container-custom">
-          <SectionHeading
-            title="Come arrivare"
-            subtitle="Facilmente raggiungibile dalla SS148 Pontina, uscita Borgo Montello/Nettuno"
-          />
-
-          {/* Directions */}
-          <div className="max-w-3xl mx-auto mb-12">
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-oliva-100 flex items-center justify-center shrink-0">
-                  <Car size={22} className="text-oliva-600" />
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl font-semibold text-mare-800 mb-2">In auto</h3>
-                  <p className="text-mare-600 leading-relaxed">
-                    Percorrendo la <strong>SS148 Pontina</strong> in direzione Latina/Terracina,
-                    prendere l'uscita <strong>Borgo Montello/Nettuno</strong>.
-                    Il ristorante si trova a pochi minuti dall'uscita, con ampio <strong>parcheggio privato gratuito</strong>.
-                  </p>
-                </div>
-              </div>
-              <div className="bg-oliva-50 rounded-xl p-4 text-sm text-oliva-700">
-                <strong>Parcheggio:</strong> Ampio parcheggio privato gratuito direttamente presso il ristorante.
-                Accessibile in sedia a rotelle.
-              </div>
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="mb-12 md:mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-[1px] bg-[#c4a05c]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Orari</span>
             </div>
+            <h2 className="font-heading font-light text-[var(--fluid-md)] text-[#0a1f36]">
+              Quando <span className="italic">trovarci</span>
+            </h2>
           </div>
 
-          {/* Distances */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {distances.map((d, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-5 text-center shadow-sm">
-                <d.icon size={20} className="text-mare-400 mx-auto mb-2" />
-                <h4 className="font-heading text-sm font-semibold text-mare-800 mb-1">{d.city}</h4>
-                <p className="text-mare-500 text-xs">{d.km}</p>
-                <p className="text-sabbia-600 text-xs font-bold">{d.time}</p>
+          {/* Horizontal scrollable schedule cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
+            {schedule.map((slot, idx) => (
+              <div
+                key={idx}
+                className={`p-5 md:p-6 text-center transition-all ${
+                  slot.closed
+                    ? 'bg-[#722f37]/10 border border-[#722f37]/10'
+                    : 'bg-[#fffef9] border border-[#0a1f36]/[0.04] shadow-sm'
+                }`}
+              >
+                <span className={`font-heading text-base md:text-lg block mb-3 ${
+                  slot.closed ? 'text-[#722f37]' : 'text-[#0a1f36]'
+                }`}>
+                  {slot.day}
+                </span>
+                <div className="w-6 h-[1px] bg-[#c4a05c]/30 mx-auto mb-3" />
+                <span className={`text-xs leading-relaxed block ${
+                  slot.closed ? 'text-[#722f37] font-bold' : 'text-[#0a1f36]/50'
+                }`}>
+                  {slot.hours.split(' | ').map((h, i) => (
+                    <span key={i} className="block">{h}</span>
+                  ))}
+                </span>
               </div>
             ))}
+          </div>
+          <p className="text-[#0a1f36]/30 text-xs mt-8 uppercase tracking-[0.15em]">Ferie: Settembre e Gennaio</p>
+        </div>
+      </section>
+
+      {/* DISTANCES - varied card sizes for visual interest */}
+      <section className="bg-[#fffef9] py-24 md:py-32 px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-12 h-[1px] bg-[#c4a05c]" />
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Come arrivare</span>
+          </div>
+          <h2 className="font-heading font-light text-[var(--fluid-md)] text-[#0a1f36] mb-4 max-w-2xl">
+            SS148 Pontina, uscita <span className="italic">Borgo Montello/Nettuno</span>
+          </h2>
+          <p className="text-[#0a1f36]/50 mb-12 max-w-lg">Ampio parcheggio privato gratuito. Accessibile in sedia a rotelle.</p>
+
+          <div ref={distancesRef} className="grid grid-cols-12 gap-4">
+            {distances.map((d, idx) => {
+              /* Varied column spans: first two cities larger, rest smaller */
+              const spanClass = idx < 2
+                ? 'col-span-12 sm:col-span-6 md:col-span-4'
+                : 'col-span-6 sm:col-span-4 md:col-span-2'
+
+              return (
+                <div
+                  key={idx}
+                  className={`${spanClass} ${
+                    idx < 2
+                      ? 'bg-[#f9f3e8] p-6 md:p-8'
+                      : 'border border-[#0a1f36]/[0.06] p-5'
+                  }`}
+                >
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#0a1f36]/30 font-bold block mb-2">{d.city}</span>
+                  <span className={`font-heading text-[#0a1f36] font-light block ${
+                    idx < 2 ? 'text-2xl md:text-3xl mb-2' : 'text-xl'
+                  }`}>{d.km}</span>
+                  <span className="text-[#c4a05c] text-xs font-bold">{d.time}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-mare-800 py-16">
-        <div className="container-custom px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-white mb-4">
-            Ti aspettiamo!
+      <section className="bg-[#0a1f36] py-24 md:py-28 px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
+            Ti <span className="italic text-[#c4a05c]">aspettiamo</span>
           </h2>
-          <div className="w-24 h-0.5 bg-sabbia-400 mx-auto mb-6" />
-          <p className="text-mare-200 mb-8 max-w-lg mx-auto">
-            Prenotazione consigliata, soprattutto nel fine settimana.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-wrap gap-4">
             <Link to="/prenota" className="btn-gold">Prenota un tavolo</Link>
-            <a href="tel:07730481561" className="btn-secondary border-white/30 text-white hover:bg-white hover:text-mare-900">
-              <Phone size={18} className="mr-2" />
-              0773 0481561
-            </a>
+            <a href="tel:07730481561" className="btn-secondary border-white/20 text-white/80 hover:bg-white hover:text-[#0a1f36]">0773 0481561</a>
           </div>
         </div>
       </section>

@@ -1,199 +1,159 @@
 import { Link } from 'react-router-dom'
-import { Wine, Grape, MapPin, Star } from 'lucide-react'
-import SectionHeading from '../components/SectionHeading'
-import WaveDecoration from '../components/WaveDecoration'
+import { useReveal, useStagger } from '../hooks/useGsap'
+import grigliataPesce from '../assets/foto/foto-12.webp'
+import pesceGriglia from '../assets/foto/foto-8.webp'
 
 const wines = [
-  {
-    name: 'Malvasia Puntinata',
-    type: 'Bianco',
-    origin: 'Lazio',
-    desc: 'Vitigno autoctono del Lazio. Profumo intenso e aromatico, perfetto con antipasti e primi di mare. Note di frutta gialla e fiori bianchi.',
-    pairing: 'Antipasti di mare, primi delicati',
-    featured: true,
-  },
-  {
-    name: 'Bellone (Cacchione)',
-    type: 'Bianco',
-    origin: 'Nettuno',
-    desc: 'Vitigno tipico della zona di Nettuno. Vino fresco e minerale con note di agrumi e mandorla. Ottimo con piatti di pesce.',
-    pairing: 'Pesce alla griglia, fritture',
-    featured: true,
-  },
-  {
-    name: 'Falanghina',
-    type: 'Bianco',
-    origin: 'Campania / Lazio',
-    desc: 'Vino elegante e strutturato con sentori di pesca, mela verde e fiori di campo. Versatile e raffinato.',
-    pairing: 'Primi di mare, secondi elaborati',
-    featured: false,
-  },
-  {
-    name: 'Vini bianchi regionali',
-    type: 'Bianco',
-    origin: 'Lazio',
-    desc: 'Selezione di vini bianchi laziali accuratamente scelti per accompagnare la nostra cucina di mare.',
-    pairing: 'Tutti i piatti di pesce',
-    featured: false,
-  },
-  {
-    name: 'Vini rossi selezionati',
-    type: 'Rosso',
-    origin: 'Lazio e Italia',
-    desc: 'Per chi preferisce la carne, una selezione di rossi del territorio e nazionali per ogni gusto.',
-    pairing: 'Piatti di carne, formaggi',
-    featured: false,
-  },
+  { name: 'Malvasia Puntinata', type: 'Bianco', origin: 'Lazio', desc: 'Vitigno autoctono del Lazio. Profumo intenso e aromatico, note di frutta gialla e fiori bianchi.', pairing: 'Antipasti di mare, primi delicati', featured: true },
+  { name: 'Bellone (Cacchione)', type: 'Bianco', origin: 'Nettuno', desc: 'Vino fresco e minerale con note di agrumi e mandorla. Tipico della zona.', pairing: 'Pesce alla griglia, fritture', featured: true },
+  { name: 'Falanghina', type: 'Bianco', origin: 'Campania / Lazio', desc: 'Elegante e strutturato con sentori di pesca, mela verde e fiori di campo.', pairing: 'Primi di mare, secondi elaborati', featured: false },
+  { name: 'Selezione bianchi laziali', type: 'Bianco', origin: 'Lazio', desc: 'Accuratamente scelti per accompagnare la nostra cucina di mare.', pairing: 'Tutti i piatti di pesce', featured: false },
+  { name: 'Vini rossi selezionati', type: 'Rosso', origin: 'Lazio e Italia', desc: 'Per chi preferisce la carne, una selezione di rossi del territorio.', pairing: 'Piatti di carne, formaggi', featured: false },
 ]
 
-export default function Cantina() {
-  return (
-    <div>
-      {/* Page Hero */}
-      <section className="relative bg-vino-500 py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
-            La Cantina
-          </h1>
-          <div className="w-24 h-0.5 bg-sabbia-400 mx-auto mb-6" />
-          <p className="text-white/80 text-xl font-heading italic">
-            Vini del territorio per accompagnare i sapori del mare
-          </p>
-        </div>
-        <WaveDecoration color="#fffef9" className="absolute bottom-0 left-0 right-0" />
-      </section>
+const featuredWines = wines.filter(w => w.featured)
+const otherWines = wines.filter(w => !w.featured)
 
-      {/* Intro */}
-      <section className="bg-crema-50 py-12">
-        <div className="container-custom px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-mare-700 text-lg leading-relaxed">
-              Una selezione accurata di <strong>vini laziali e pontini</strong>, scelti per esaltare
-              al meglio i sapori della nostra cucina di mare. Dai vitigni autoctoni del Lazio
-              alle etichette più pregiate del territorio.
+export default function Cantina() {
+  const winesRef = useStagger({ stagger: 0.12, y: 50 })
+  const territoryRef = useReveal({ y: 40 })
+
+  return (
+    <div className="overflow-hidden">
+      {/* HERO */}
+      <section className="relative min-h-[50vh] flex items-end pb-16 md:pb-24 pt-32 bg-[#722f37]">
+        <div className="absolute top-0 right-0 w-[45%] h-full hidden lg:block overflow-hidden" style={{ clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0% 100%)' }}>
+          <img src={grigliataPesce} alt="Grigliata di pesce - abbinamento vini" className="w-full h-full object-cover opacity-25" />
+        </div>
+        <div className="absolute bottom-16 right-12 pointer-events-none select-none" aria-hidden="true">
+          <span className="font-heading text-[clamp(10rem,28vw,22rem)] font-light leading-none text-white/[0.03]">V</span>
+        </div>
+        <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-[1px] bg-[#c4a05c]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">I nostri vini</span>
+            </div>
+            <h1 className="font-heading font-light text-[clamp(3rem,8vw,7rem)] leading-[0.9] text-white tracking-[-0.02em]">
+              La Cantina
+            </h1>
+            <p className="font-heading italic text-[clamp(1.1rem,2vw,1.6rem)] text-white/50 mt-4 max-w-md">
+              Vini del territorio per accompagnare i sapori del mare
             </p>
           </div>
         </div>
       </section>
 
-      {/* Featured Wines */}
-      <section className="section-padding bg-crema-50">
-        <div className="container-custom">
-          <SectionHeading
-            title="I nostri vini"
-            subtitle="Vitigni autoctoni e selezioni del territorio pontino e laziale"
-          />
+      {/* WINES - Featured wines get card treatment, unfeatured in 2-col layout */}
+      <section className="py-24 md:py-32 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-2xl mb-16 md:mb-24">
+            <p className="text-[#0a1f36]/60 leading-[1.8]">
+              Una selezione accurata di <strong className="text-[#0a1f36] font-normal">vini laziali e pontini</strong>, scelti per esaltare i sapori della nostra cucina. Dai vitigni autoctoni del Lazio alle etichette più pregiate del territorio.
+            </p>
+          </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            {wines.map((wine, idx) => (
-              <div
-                key={idx}
-                className={`rounded-2xl p-8 card-hover ${
-                  wine.featured
-                    ? 'bg-white border-2 border-sabbia-200 shadow-sm'
-                    : 'bg-white/80'
-                }`}
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  {/* Wine icon */}
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center shrink-0 ${
-                    wine.type === 'Rosso' ? 'bg-vino-100' : 'bg-sabbia-100'
-                  }`}>
-                    {wine.type === 'Rosso' ? (
-                      <Wine size={28} className="text-vino-500" />
-                    ) : (
-                      <Wine size={28} className="text-sabbia-600" />
-                    )}
+          <div ref={winesRef}>
+            {/* FEATURED WINES - card treatment with background */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+              {featuredWines.map((wine, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#f9f3e8] p-8 md:p-10 lg:p-12 relative overflow-hidden group"
+                >
+                  {/* Large decorative number */}
+                  <div className="absolute top-4 right-6 pointer-events-none select-none" aria-hidden="true">
+                    <span className="font-heading text-[7rem] md:text-[9rem] font-light leading-none text-[#c4a05c]/[0.06]">0{idx + 1}</span>
                   </div>
-
-                  {/* Content */}
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <h3 className="font-heading text-2xl font-semibold text-mare-800">
-                        {wine.name}
-                      </h3>
-                      <span className={`text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider ${
-                        wine.type === 'Rosso'
-                          ? 'bg-vino-100 text-vino-600'
-                          : 'bg-sabbia-100 text-sabbia-700'
-                      }`}>
-                        {wine.type}
-                      </span>
-                      {wine.featured && (
-                        <span className="flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-mare-100 text-mare-700 font-bold">
-                          <Star size={12} className="fill-mare-500 text-mare-500" />
-                          In evidenza
-                        </span>
-                      )}
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className={`text-[9px] uppercase tracking-[0.2em] font-bold ${wine.type === 'Rosso' ? 'text-[#722f37]' : 'text-[#c4a05c]'}`}>{wine.type}</span>
+                      <span className="w-4 h-[1px] bg-[#0a1f36]/10" />
+                      <span className="text-[#0a1f36]/20 text-xs">{wine.origin}</span>
                     </div>
-
-                    <div className="flex items-center gap-2 mb-3 text-sm text-mare-500">
-                      <MapPin size={14} />
-                      <span>{wine.origin}</span>
-                    </div>
-
-                    <p className="text-mare-600/80 mb-4 leading-relaxed">
-                      {wine.desc}
-                    </p>
-
-                    <div className="flex items-center gap-2 text-sm">
-                      <Grape size={14} className="text-sabbia-500" />
-                      <span className="text-mare-500">
-                        <strong className="text-mare-700">Abbinamento:</strong> {wine.pairing}
-                      </span>
+                    <h3 className="font-heading text-[clamp(1.5rem,2.5vw,2.2rem)] font-light text-[#0a1f36] mb-5">{wine.name}</h3>
+                    <p className="text-[#0a1f36]/50 text-sm leading-relaxed mb-6 max-w-sm">{wine.desc}</p>
+                    <div className="border-t border-[#0a1f36]/[0.06] pt-4">
+                      <span className="text-[10px] uppercase tracking-[0.15em] text-[#0a1f36]/30 block mb-1">Abbinamento</span>
+                      <p className="text-[#0a1f36]/50 text-sm">{wine.pairing}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Divider with label */}
+            <div className="flex items-center gap-4 mb-12">
+              <div className="w-8 h-[1px] bg-[#c4a05c]/40" />
+              <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a05c]/50 font-bold">La selezione</span>
+              <div className="flex-1 h-[1px] bg-[#0a1f36]/[0.04]" />
+            </div>
+
+            {/* UNFEATURED WINES - smaller, 2-col layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+              {otherWines.map((wine, idx) => (
+                <div
+                  key={idx}
+                  className={`py-8 ${idx < otherWines.length - 1 || idx % 2 === 0 ? 'border-b border-[#0a1f36]/[0.06]' : ''}`}
+                >
+                  <div className="flex items-baseline gap-3 mb-3">
+                    <span className="font-heading text-[2rem] font-light text-[#0a1f36]/[0.06] leading-none shrink-0">0{idx + 3}</span>
+                    <div>
+                      <h3 className="font-heading text-[clamp(1.1rem,1.5vw,1.4rem)] font-light text-[#0a1f36]">{wine.name}</h3>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className={`text-[9px] uppercase tracking-[0.2em] font-bold ${wine.type === 'Rosso' ? 'text-[#722f37]' : 'text-[#c4a05c]'}`}>{wine.type}</span>
+                        <span className="text-[#0a1f36]/20 text-xs">{wine.origin}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[#0a1f36]/40 text-sm leading-relaxed pl-12">{wine.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Territory */}
-      <section className="bg-white py-16">
-        <div className="container-custom px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="w-14 h-14 rounded-full bg-oliva-100 flex items-center justify-center mx-auto mb-6">
-              <Grape size={24} className="text-oliva-600" />
+      {/* TERRITORY - image overlaps edge of section, breaks out of grid */}
+      <section ref={territoryRef} className="bg-[#f9f3e8] py-24 md:py-32 px-6 md:px-10 lg:px-16 relative overflow-visible">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
+          {/* Image that breaks out of the section on the left */}
+          <div className="lg:col-span-4 hidden lg:block relative">
+            <div className="aspect-[3/4] overflow-hidden -ml-16 xl:-ml-24 relative z-10 shadow-2xl shadow-black/10">
+              <img src={pesceGriglia} alt="Pesce alla griglia" className="w-full h-full object-cover" />
             </div>
-            <h2 className="font-heading text-3xl font-semibold text-mare-800 mb-4">
-              Il territorio del vino pontino
+            {/* Decorative accent below image */}
+            <div className="absolute -bottom-8 left-0 w-20 h-[1px] bg-[#c4a05c]/30" />
+          </div>
+          <div className="lg:col-span-6 lg:col-start-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-[1px] bg-[#c4a05c]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Il territorio</span>
+            </div>
+            <h2 className="font-heading font-light text-[var(--fluid-md)] text-[#0a1f36] mb-6">
+              Il vino <span className="italic">pontino</span>
             </h2>
-            <div className="w-24 h-0.5 bg-sabbia-500 mx-auto mb-6" />
-            <p className="text-mare-600 leading-relaxed mb-6">
-              L'Agro Pontino vanta una tradizione vinicola millenaria. I terreni fertili della pianura,
-              il clima mediterraneo e la vicinanza al mare creano condizioni ideali per vitigni unici
-              come la <strong>Malvasia Puntinata</strong> e il <strong>Bellone</strong>.
-            </p>
-            <p className="text-mare-600 leading-relaxed">
-              La nostra carta dei vini privilegia queste eccellenze locali, con una selezione pensata
-              appositamente per accompagnare i piatti di pesce fresco della nostra cucina.
-            </p>
+            <div className="space-y-4 text-[#0a1f36]/60 leading-[1.8]">
+              <p>L'Agro Pontino vanta una tradizione vinicola millenaria. I terreni fertili, il clima mediterraneo e la vicinanza al mare creano condizioni ideali per vitigni unici come la <strong className="text-[#0a1f36] font-normal">Malvasia Puntinata</strong> e il <strong className="text-[#0a1f36] font-normal">Bellone</strong>.</p>
+              <p>La nostra carta privilegia queste eccellenze locali, pensata appositamente per il pesce fresco della nostra cucina.</p>
+            </div>
+            {/* Decorative watermark */}
+            <div className="mt-12 pointer-events-none select-none" aria-hidden="true">
+              <span className="font-heading text-[5rem] font-light leading-none text-[#0a1f36]/[0.03]">Pontino</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-vino-500 py-16">
-        <div className="container-custom px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-white mb-4">
-            Un calice in buona compagnia
+      <section className="bg-[#722f37] py-24 md:py-28 px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
+            Un calice in <span className="italic text-[#c4a05c]">buona compagnia</span>
           </h2>
-          <div className="w-24 h-0.5 bg-sabbia-400 mx-auto mb-6" />
-          <p className="text-white/80 mb-8 max-w-lg mx-auto">
-            Vieni a degustare i nostri vini accompagnati dai piatti freschi della nostra cucina.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4">
             <Link to="/prenota" className="btn-gold">Prenota un tavolo</Link>
-            <Link to="/menu" className="btn-secondary border-white/30 text-white hover:bg-white hover:text-vino-700">
-              Vedi il menu
-            </Link>
+            <Link to="/menu" className="btn-secondary border-white/20 text-white/80 hover:bg-white hover:text-[#722f37]">Il menu</Link>
           </div>
         </div>
       </section>

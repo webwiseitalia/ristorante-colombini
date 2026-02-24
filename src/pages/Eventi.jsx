@@ -1,168 +1,159 @@
 import { Link } from 'react-router-dom'
-import { Heart, Users, Briefcase, Gift, Cake, GlassWater, Phone, ArrowRight } from 'lucide-react'
-import SectionHeading from '../components/SectionHeading'
-import WaveDecoration from '../components/WaveDecoration'
+import { useStagger, useReveal } from '../hooks/useGsap'
+import salaRistorante from '../assets/foto/foto-11.webp'
+import antipastiMisti from '../assets/foto/foto-14.webp'
 
 const eventTypes = [
-  {
-    icon: Heart,
-    title: 'Comunioni e Cresime',
-    desc: 'Celebra i sacramenti più importanti con un pranzo speciale. Menu personalizzati per tutta la famiglia.',
-  },
-  {
-    icon: GlassWater,
-    title: 'Battesimi',
-    desc: 'Accogli il nuovo arrivato con un banchetto in un ambiente accogliente e familiare.',
-  },
-  {
-    icon: Cake,
-    title: 'Compleanni e Anniversari',
-    desc: 'Festeggia le ricorrenze che contano con i sapori autentici della nostra cucina.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Pranzi di Lavoro',
-    desc: 'Location ideale per meeting aziendali e pranzi di lavoro. Servizio rapido e professionale.',
-  },
-  {
-    icon: Users,
-    title: 'Gruppi Organizzati',
-    desc: 'Con 140 coperti possiamo ospitare gruppi numerosi con menu dedicati e servizio impeccabile.',
-  },
-  {
-    icon: Gift,
-    title: 'Eventi Privati',
-    desc: 'Ogni occasione merita il meglio. Contattaci per organizzare il tuo evento su misura.',
-  },
-]
-
-const features = [
-  '140 coperti disponibili',
-  'Menu personalizzabili',
-  'Ampio parcheggio privato',
-  'Accessibile in sedia a rotelle',
-  'Servizio attento e professionale',
-  'Posizione comoda sulla Pontina',
+  { title: 'Comunioni e Cresime', desc: 'Celebra i sacramenti con un pranzo speciale. Menu personalizzati.' },
+  { title: 'Battesimi', desc: 'Accogli il nuovo arrivato in un ambiente accogliente e familiare.' },
+  { title: 'Compleanni e Anniversari', desc: 'Le ricorrenze importanti con i sapori autentici della cucina.' },
+  { title: 'Pranzi di Lavoro', desc: 'Location ideale per meeting aziendali. Servizio rapido.' },
+  { title: 'Gruppi Organizzati', desc: '140 coperti per gruppi numerosi con menu dedicati.' },
+  { title: 'Eventi Privati', desc: 'Ogni occasione merita il meglio. Menu su misura.' },
 ]
 
 export default function Eventi() {
+  const eventsRef = useStagger({ stagger: 0.1, y: 50 })
+  const featuresRef = useReveal({ y: 40 })
+
   return (
-    <div>
-      {/* Page Hero */}
-      <section className="relative bg-mare-800 py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
+    <div className="overflow-hidden">
+      {/* HERO */}
+      <section className="relative min-h-[50vh] flex items-end pb-16 md:pb-24 pt-32 bg-[#0a1f36]">
+        <div className="absolute top-0 right-0 w-[50%] h-full hidden lg:block overflow-hidden">
+          <img src={salaRistorante} alt="Sala del Ristorante Colombini" className="w-full h-full object-cover opacity-15" />
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
-            Eventi e Cerimonie
-          </h1>
-          <div className="w-24 h-0.5 bg-sabbia-400 mx-auto mb-6" />
-          <p className="text-mare-200 text-xl font-heading italic">
-            Per i vostri momenti speciali
-          </p>
+        <div className="absolute bottom-16 left-12 pointer-events-none select-none" aria-hidden="true">
+          <span className="font-heading text-[clamp(10rem,30vw,22rem)] font-light leading-none text-white/[0.02]">E</span>
         </div>
-        <WaveDecoration color="#fffef9" className="absolute bottom-0 left-0 right-0" />
+        <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-[1px] bg-[#c4a05c]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Per le vostre occasioni</span>
+            </div>
+            <h1 className="font-heading font-light text-[clamp(3rem,8vw,7rem)] leading-[0.9] text-white tracking-[-0.02em]">
+              Eventi e
+              <br />
+              <span className="italic text-[#c4a05c] ml-[3vw]">Cerimonie</span>
+            </h1>
+          </div>
+        </div>
       </section>
 
-      {/* Intro */}
-      <section className="bg-crema-50 py-12">
-        <div className="container-custom px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-mare-700 text-lg leading-relaxed">
-              Con <strong>140 coperti</strong> e un servizio attento e professionale,
-              il Ristorante Colombini è la location ideale per celebrare i vostri
-              momenti più importanti con i sapori autentici del mare.
+      {/* INTRO - wider span with large "140" watermark */}
+      <section className="py-24 md:py-32 px-6 md:px-10 lg:px-16 bg-[#fffef9] relative overflow-hidden">
+        {/* Large watermark number */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-[5%] pointer-events-none select-none" aria-hidden="true">
+          <span className="font-heading text-[clamp(10rem,25vw,22rem)] font-light leading-none text-[#0a1f36]/[0.03]">140</span>
+        </div>
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="max-w-3xl">
+            <p className="text-[#0a1f36]/60 leading-[1.8] text-lg md:text-xl">
+              Con <strong className="text-[#0a1f36] font-normal">140 coperti</strong> e un servizio attento, il Ristorante Colombini è la location ideale per celebrare i vostri momenti più importanti.
             </p>
           </div>
+          {/* Decorative accent line */}
+          <div className="mt-12 w-32 h-[1px] bg-[#c4a05c]/30" />
         </div>
       </section>
 
-      {/* Event Types */}
-      <section className="section-padding bg-crema-50 pt-8">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {eventTypes.map((event, idx) => (
+      {/* EVENT TYPES - first item larger with accent bg, rest alternate left/right */}
+      <section className="pb-32 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
+        <div ref={eventsRef} className="max-w-[1400px] mx-auto">
+          {eventTypes.map((event, idx) => {
+            const isFirst = idx === 0
+            const isEven = idx % 2 === 0
+
+            if (isFirst) {
+              return (
+                <div key={idx} className="mb-16">
+                  {/* First event type - hero treatment */}
+                  <div className="bg-[#f9f3e8] -mx-6 px-6 md:-mx-10 md:px-10 lg:-mx-16 lg:px-16 py-16 md:py-20 relative overflow-hidden">
+                    <div className="absolute top-6 right-8 pointer-events-none select-none" aria-hidden="true">
+                      <span className="font-heading text-[8rem] md:text-[12rem] font-light leading-none text-[#c4a05c]/[0.06]">01</span>
+                    </div>
+                    <div className="max-w-[1400px] mx-auto relative z-10">
+                      <div className="max-w-2xl">
+                        <h3 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-light text-[#0a1f36] mb-5">{event.title}</h3>
+                        <p className="text-[#0a1f36]/50 text-lg max-w-md">{event.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-8 card-hover shadow-sm text-center group"
+                className={`py-10 md:py-14 ${idx < eventTypes.length - 1 ? 'border-b border-[#0a1f36]/[0.06]' : ''} ${
+                  isEven ? '' : 'md:text-right'
+                }`}
               >
-                <div className="w-16 h-16 rounded-full bg-mare-50 flex items-center justify-center mx-auto mb-6 group-hover:bg-mare-500 transition-colors duration-300">
-                  <event.icon size={28} className="text-mare-500 group-hover:text-white transition-colors duration-300" />
+                <div className={`flex flex-col md:flex-row items-start gap-6 md:gap-12 ${
+                  isEven ? '' : 'md:flex-row-reverse'
+                }`}>
+                  <span className={`font-heading text-[3.5rem] md:text-[4.5rem] font-light leading-none text-[#0a1f36]/[0.06] shrink-0 -mt-2`}>
+                    0{idx + 1}
+                  </span>
+                  <div className={`${isEven ? '' : 'md:ml-auto'}`}>
+                    <h3 className="font-heading text-[clamp(1.4rem,2.5vw,2.2rem)] font-light text-[#0a1f36] mb-3">{event.title}</h3>
+                    <p className="text-[#0a1f36]/50 max-w-md">{event.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-heading text-2xl font-semibold text-mare-800 mb-3">
-                  {event.title}
-                </h3>
-                <p className="text-mare-600/70 text-sm leading-relaxed">
-                  {event.desc}
-                </p>
+                {/* Subtle accent divider between groups */}
+                {idx === 2 && (
+                  <div className="mt-14 flex items-center gap-4">
+                    <div className="w-8 h-[1px] bg-[#c4a05c]/40" />
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a05c]/40 font-bold">Aziendale</span>
+                    <div className="flex-1 h-[1px] bg-[#c4a05c]/10" />
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-heading text-4xl font-semibold text-mare-800 mb-4">
-                Perché scegliere il Colombini
-              </h2>
-              <div className="w-24 h-0.5 bg-sabbia-500 mb-8" />
-              <p className="text-mare-600 mb-8 leading-relaxed">
-                La nostra esperienza trentennale nella ristorazione ci permette di gestire
-                ogni tipo di evento con professionalità e attenzione ai dettagli.
-                Ogni menu è personalizzabile secondo le vostre esigenze.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-oliva-100 flex items-center justify-center shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-oliva-500" />
-                    </div>
-                    <span className="text-mare-700 text-sm">{feature}</span>
-                  </div>
-                ))}
-              </div>
+      {/* FEATURES - image overlaps into section above with negative margin-top */}
+      <section ref={featuresRef} className="bg-[#f9f3e8] pt-0 pb-24 md:pb-32 px-6 md:px-10 lg:px-16 relative">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5 pt-20 md:pt-28">
+            <h2 className="font-heading font-light text-[var(--fluid-md)] text-[#0a1f36] mb-8">
+              Perché scegliere <span className="italic">il Colombini</span>
+            </h2>
+            <div className="space-y-4">
+              {['140 coperti disponibili', 'Menu personalizzabili', 'Ampio parcheggio privato', 'Accessibile in sedia a rotelle', 'Servizio professionale', 'Posizione comoda sulla Pontina'].map((f, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <span className="w-4 h-[1px] bg-[#c4a05c]" />
+                  <span className="text-[#0a1f36]/60 text-sm">{f}</span>
+                </div>
+              ))}
             </div>
-
-            {/* Image placeholder */}
-            <div className="bg-mare-100 rounded-2xl aspect-[4/3] flex items-center justify-center">
-              <div className="text-center p-8">
-                <Users size={48} className="text-mare-300 mx-auto mb-4" />
-                <p className="text-mare-400 font-heading text-lg">Foto Eventi</p>
-                <p className="text-mare-300 text-sm mt-2">Carica le foto tramite il File Manager</p>
-              </div>
+          </div>
+          <div className="lg:col-span-5 lg:col-start-8 -mt-4 lg:-mt-28 relative z-10">
+            <div className="aspect-[4/3] overflow-hidden shadow-2xl shadow-black/10">
+              <img src={antipastiMisti} alt="Antipasti misti per eventi" className="w-full h-full object-cover" />
+            </div>
+            {/* Small decorative element below image */}
+            <div className="mt-6 flex items-center gap-3 justify-end">
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#0a1f36]/25 font-bold">Antipasti misti</span>
+              <div className="w-8 h-[1px] bg-[#c4a05c]/30" />
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-mare-800 py-16">
-        <div className="container-custom px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-white mb-4">
-            Organizziamo il tuo evento
+      <section className="bg-[#0a1f36] py-24 md:py-28 px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
+            Organizziamo il tuo <span className="italic text-[#c4a05c]">evento</span>
           </h2>
-          <div className="w-24 h-0.5 bg-sabbia-400 mx-auto mb-6" />
-          <p className="text-mare-200 mb-10 max-w-lg mx-auto">
-            Contattaci per un preventivo personalizzato. Saremo felici di creare il menu perfetto
-            per la tua occasione speciale.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/prenota" className="btn-gold">
-              Richiedi informazioni
-              <ArrowRight size={18} className="ml-2" />
-            </Link>
-            <a href="tel:07730481561" className="btn-secondary border-white/30 text-white hover:bg-white hover:text-mare-900">
-              <Phone size={18} className="mr-2" />
-              Chiamaci
-            </a>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/prenota" className="btn-gold">Richiedi informazioni</Link>
+            <a href="tel:07730481561" className="btn-secondary border-white/20 text-white/80 hover:bg-white hover:text-[#0a1f36]">0773 0481561</a>
           </div>
         </div>
       </section>
