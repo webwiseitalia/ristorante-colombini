@@ -51,7 +51,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between px-6 md:px-10 lg:px-16 h-20 md:h-24">
           <Link to="/" className="relative z-50">
             <div className="flex flex-col">
-              <span className={`font-heading text-[clamp(1.3rem,2.5vw,2rem)] font-light tracking-[0.02em] leading-none transition-colors duration-500 ${isDark ? 'text-[#0a1f36]' : 'text-white'}`}>
+              <span className={`font-heading text-[clamp(1.3rem,2.5vw,2rem)] font-light tracking-[0.02em] leading-none transition-colors duration-500 ${isOpen ? 'text-white' : isDark ? 'text-[#0a1f36]' : 'text-white'}`}>
                 Colombini
               </span>
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#c4a05c] font-bold mt-1">
@@ -100,17 +100,17 @@ export default function Navbar() {
           >
             <motion.span
               animate={isOpen ? { rotate: 45, y: 8, width: 28 } : { rotate: 0, y: 0, width: 28 }}
-              className={`block h-[1.5px] origin-center transition-colors duration-500 ${isDark || isOpen ? 'bg-[#0a1f36]' : 'bg-white'}`}
+              className={`block h-[1.5px] origin-center transition-colors duration-500 ${isOpen ? 'bg-white' : isDark ? 'bg-[#0a1f36]' : 'bg-white'}`}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             />
             <motion.span
               animate={isOpen ? { opacity: 0, x: 10 } : { opacity: 1, x: 0, width: 20 }}
-              className={`block h-[1.5px] transition-colors duration-500 ${isDark || isOpen ? 'bg-[#0a1f36]' : 'bg-white'}`}
+              className={`block h-[1.5px] transition-colors duration-500 ${isOpen ? 'bg-white' : isDark ? 'bg-[#0a1f36]' : 'bg-white'}`}
               transition={{ duration: 0.3 }}
             />
             <motion.span
               animate={isOpen ? { rotate: -45, y: -8, width: 28 } : { rotate: 0, y: 0, width: 14 }}
-              className={`block h-[1.5px] origin-center transition-colors duration-500 ${isDark || isOpen ? 'bg-[#0a1f36]' : 'bg-white'}`}
+              className={`block h-[1.5px] origin-center transition-colors duration-500 ${isOpen ? 'bg-white' : isDark ? 'bg-[#0a1f36]' : 'bg-white'}`}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             />
           </button>

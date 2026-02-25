@@ -43,39 +43,45 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-screen flex items-end pb-16 md:pb-24 pt-32 bg-[#fffef9]">
+      <section ref={heroRef} className="relative min-h-[85vh] lg:min-h-screen flex items-end pb-12 md:pb-24 pt-28 md:pt-32 bg-[#0a1f36] lg:bg-[#fffef9]">
+        {/* Mobile: full background image */}
+        <div className="absolute inset-0 lg:hidden overflow-hidden">
+          <img src={heroZuppa} alt="Zuppa di pesce del Ristorante Colombini" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-[#0a1f36]/70" />
+        </div>
+        {/* Desktop: clip-path image panel on right */}
         <div ref={parallaxBg} className="absolute top-0 right-0 w-[55%] h-full hidden lg:block overflow-hidden" style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}>
           <img src={heroZuppa} alt="Zuppa di pesce del Ristorante Colombini" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0a1f36]/60" />
         </div>
-        {/* Gradient overlay for navbar readability */}
+        {/* Gradient overlay for navbar readability on desktop */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0a1f36]/40 to-transparent z-20 pointer-events-none hidden lg:block" />
         <div className="absolute top-20 right-8 md:right-16 pointer-events-none select-none" aria-hidden="true">
-          <span className="font-heading text-[clamp(8rem,25vw,20rem)] font-light leading-none text-[#0a1f36]/[0.03] lg:text-white/[0.05]">93</span>
+          <span className="font-heading text-[clamp(8rem,25vw,20rem)] font-light leading-none text-white/[0.05] lg:text-[#0a1f36]/[0.03] lg:text-white/[0.05]">93</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
           <div className="w-full">
-            <div className="hero-label flex items-center gap-4 mb-8 opacity-0">
+            <div className="hero-label flex items-center gap-4 mb-6 md:mb-8 opacity-0">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Accademia Italiana della Cucina</span>
             </div>
-            <h1 className="mb-8">
-              <div className="overflow-hidden"><div className="hero-title-line font-heading font-light text-[clamp(3rem,9vw,8rem)] leading-[0.9] text-[#0a1f36] tracking-[-0.02em]">Ristorante</div></div>
-              <div className="overflow-hidden"><div className="hero-title-line font-heading font-light text-[clamp(3.5rem,11vw,10rem)] leading-[0.9] text-[#0a1f36] tracking-[-0.02em] ml-[5vw]">Colombini</div></div>
-              <div className="overflow-hidden mt-2"><div className="hero-title-line font-heading italic font-light text-[clamp(1.2rem,2.5vw,2rem)] text-[#c4a05c] ml-[2vw]">il sapore del mare a due passi dalla Pontina</div></div>
+            <h1 className="mb-6 md:mb-8">
+              <div className="overflow-hidden"><div className="hero-title-line font-heading font-light text-[clamp(3rem,9vw,8rem)] leading-[0.9] text-white lg:text-[#0a1f36] tracking-[-0.02em]">Ristorante</div></div>
+              <div className="overflow-hidden"><div className="hero-title-line font-heading font-light text-[clamp(3.5rem,11vw,10rem)] leading-[0.9] text-white lg:text-[#0a1f36] tracking-[-0.02em] ml-[5vw]">Colombini</div></div>
+              <div className="overflow-hidden mt-2"><div className="hero-title-line font-heading italic font-light text-[clamp(1.1rem,2.5vw,2rem)] text-[#c4a05c] ml-[2vw]">il sapore del mare a due passi dalla Pontina</div></div>
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-end">
               <div className="lg:col-span-5">
-                <p className="hero-subtitle text-[#0a1f36]/60 text-[clamp(0.9rem,1.2vw,1.1rem)] leading-relaxed max-w-lg opacity-0">Pesce fresco dal porto di Anzio, tradizione familiare dal 1993. 140 coperti, parcheggio privato, uscita Pontina.</p>
-                <div className="flex flex-wrap gap-4 mt-8">
+                <p className="hero-subtitle text-white/60 lg:text-[#0a1f36]/60 text-sm lg:text-[clamp(0.9rem,1.2vw,1.1rem)] leading-relaxed max-w-lg opacity-0">Pesce fresco dal porto di Anzio, tradizione familiare dal 1993. 140 coperti, parcheggio privato, uscita Pontina.</p>
+                <div className="flex flex-wrap gap-3 md:gap-4 mt-6 md:mt-8">
                   <Link to="/prenota" className="hero-cta btn-gold opacity-0">Prenota un tavolo</Link>
-                  <Link to="/menu" className="hero-cta btn-secondary opacity-0">Il menu</Link>
+                  <Link to="/menu" className="hero-cta btn-secondary border-white/20 text-white/80 hover:bg-white hover:text-[#0a1f36] lg:border-[#0a1f36] lg:text-[#0a1f36] lg:hover:bg-[#0a1f36] lg:hover:text-[#fffef9] opacity-0">Il menu</Link>
                 </div>
               </div>
-              <div className="lg:col-span-3 lg:col-start-10">
+              <div className="hidden lg:block lg:col-span-3 lg:col-start-10">
                 <div className="space-y-4 text-[11px] uppercase tracking-[0.15em]">
                   {['Pesce fresco di Anzio', 'Gestione familiare dal 1993', 'Ampio parcheggio privato'].map((t, i) => (
-                    <div key={i} className="hero-detail opacity-0 flex items-center gap-3 text-[#0a1f36]/40 lg:text-white/60">
+                    <div key={i} className="hero-detail opacity-0 flex items-center gap-3 text-white/60">
                       <span className="w-3 h-[1px] bg-[#c4a05c]" />{t}
                     </div>
                   ))}
@@ -84,9 +90,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} className="absolute bottom-8 left-6 md:left-10 lg:left-16 flex flex-col items-center gap-2">
-          <span className="text-[9px] uppercase tracking-[0.3em] text-[#0a1f36]/30 lg:text-[#0a1f36]/20 rotate-90 origin-center translate-x-3">Scroll</span>
-          <div className="w-[1px] h-12 bg-[#0a1f36]/20" />
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} className="absolute bottom-6 md:bottom-8 left-6 md:left-10 lg:left-16 flex-col items-center gap-2 hidden md:flex">
+          <span className="text-[9px] uppercase tracking-[0.3em] text-white/30 lg:text-[#0a1f36]/20 rotate-90 origin-center translate-x-3">Scroll</span>
+          <div className="w-[1px] h-12 bg-white/20 lg:bg-[#0a1f36]/20" />
         </motion.div>
       </section>
 
