@@ -27,7 +27,7 @@ export default function Eventi() {
           <span className="font-heading text-[clamp(10rem,30vw,22rem)] font-light leading-none text-white/[0.02]">E</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Per le vostre occasioni</span>
@@ -42,12 +42,12 @@ export default function Eventi() {
       </section>
 
       {/* INTRO - wider span with large "140" watermark */}
-      <section className="py-24 md:py-32 px-6 md:px-10 lg:px-16 bg-[#fffef9] relative overflow-hidden">
+      <section className="py-20 md:py-28 px-6 md:px-10 lg:px-16 bg-[#fffef9] relative overflow-hidden">
         {/* Large watermark number */}
         <div className="absolute top-1/2 -translate-y-1/2 right-[5%] pointer-events-none select-none" aria-hidden="true">
           <span className="font-heading text-[clamp(10rem,25vw,22rem)] font-light leading-none text-[#0a1f36]/[0.03]">140</span>
         </div>
-        <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="w-full relative z-10">
           <div className="max-w-3xl">
             <p className="text-[#0a1f36]/60 leading-[1.8] text-lg md:text-xl">
               Con <strong className="text-[#0a1f36] font-normal">140 coperti</strong> e un servizio attento, il Ristorante Colombini è la location ideale per celebrare i vostri momenti più importanti.
@@ -59,8 +59,8 @@ export default function Eventi() {
       </section>
 
       {/* EVENT TYPES - first item larger with accent bg, rest alternate left/right */}
-      <section className="pb-32 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
-        <div ref={eventsRef} className="max-w-[1400px] mx-auto">
+      <section className="pb-24 md:pb-28 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
+        <div ref={eventsRef} className="w-full">
           {eventTypes.map((event, idx) => {
             const isFirst = idx === 0
             const isEven = idx % 2 === 0
@@ -73,7 +73,7 @@ export default function Eventi() {
                     <div className="absolute top-6 right-8 pointer-events-none select-none" aria-hidden="true">
                       <span className="font-heading text-[8rem] md:text-[12rem] font-light leading-none text-[#c4a05c]/[0.06]">01</span>
                     </div>
-                    <div className="max-w-[1400px] mx-auto relative z-10">
+                    <div className="w-full relative z-10">
                       <div className="max-w-2xl">
                         <h3 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-light text-[#0a1f36] mb-5">{event.title}</h3>
                         <p className="text-[#0a1f36]/50 text-lg max-w-md">{event.desc}</p>
@@ -117,8 +117,8 @@ export default function Eventi() {
       </section>
 
       {/* FEATURES - image overlaps into section above with negative margin-top */}
-      <section ref={featuresRef} className="bg-[#f9f3e8] pt-0 pb-24 md:pb-32 px-6 md:px-10 lg:px-16 relative">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section ref={featuresRef} className="bg-[#f9f3e8] pt-0 pb-20 md:pb-28 px-6 md:px-10 lg:px-16 relative">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5 pt-20 md:pt-28">
             <h2 className="font-heading font-light text-[var(--fluid-md)] text-[#0a1f36] mb-8">
               Perché scegliere <span className="italic">il Colombini</span>
@@ -146,8 +146,8 @@ export default function Eventi() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0a1f36] py-24 md:py-28 px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <section className="bg-[#0a1f36] py-20 md:py-24 px-6 md:px-10 lg:px-16">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
             Organizziamo il tuo <span className="italic text-[#c4a05c]">evento</span>
           </h2>

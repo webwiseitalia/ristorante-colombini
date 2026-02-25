@@ -193,7 +193,7 @@ export default function Menu() {
     if (sIdx === 0) {
       /* After Antipasti di Mare: asymmetric - one tall, one short */
       return (
-        <div className="mb-20 md:mb-28 max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="mb-20 md:mb-28 w-full px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
             <div className="md:col-span-7 overflow-hidden">
               <img src={photoBreak.images[0]} alt={photoBreak.caption} className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
@@ -211,7 +211,7 @@ export default function Menu() {
     if (sIdx === 2) {
       /* After Primi di Mare: reversed asymmetry, narrow left + wide right */
       return (
-        <div className="mb-20 md:mb-28 max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="mb-20 md:mb-28 w-full px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
             {photoBreak.images[1] && (
               <div className="md:col-span-4 md:col-start-1 overflow-hidden">
@@ -228,7 +228,7 @@ export default function Menu() {
     }
     /* After Secondi: single image, wide cinematic crop */
     return (
-      <div className="mb-20 md:mb-28 max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+      <div className="mb-20 md:mb-28 w-full px-6 md:px-10 lg:px-16">
         <div className="overflow-hidden">
           <img src={photoBreak.images[0]} alt={photoBreak.caption} className="w-full aspect-[21/9] object-cover hover:scale-105 transition-transform duration-700" />
         </div>
@@ -319,16 +319,8 @@ export default function Menu() {
 
   /* ── section wrappers — each section gets its own width/alignment ── */
 
-  const sectionWrapperClass = (sIdx) => {
-    switch (sIdx) {
-      case 0: return 'max-w-[1100px] mx-auto' // Antipasti di Mare: wide, 2-col grid
-      case 1: return 'max-w-[800px] ml-auto'   // Antipasti di Terra: narrower, pushed right
-      case 2: return 'max-w-[1000px] mx-auto'  // Primi di Mare: full width
-      case 3: return 'max-w-[600px] mr-auto'   // Primi di Terra: narrow, left-aligned
-      case 4: return 'max-w-[1100px] mx-auto'  // Secondi: full width, 12-col grid
-      case 5: return 'max-w-[500px] mx-auto'   // Dolci: small, centered
-      default: return 'max-w-[1000px] mx-auto'
-    }
+  const sectionWrapperClass = () => {
+    return 'w-full'
   }
 
   const renderItems = (section, sIdx) => {
@@ -346,16 +338,18 @@ export default function Menu() {
   return (
     <div className="overflow-hidden">
       {/* HERO */}
-      <section className="relative min-h-[60vh] flex items-end pb-16 md:pb-24 pt-32 bg-[#fffef9]">
+      <section className="relative min-h-[55vh] flex items-end pb-16 md:pb-24 pt-32 bg-[#fffef9]">
         <div className="absolute top-0 left-0 w-[35%] h-full hidden lg:block overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)' }}>
           <img src={paccheriScampi} alt="Paccheri con scampi" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0a1f36]/60" />
         </div>
+        {/* Gradient overlay for navbar readability */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0a1f36]/40 to-transparent z-20 pointer-events-none hidden lg:block" />
         <div className="absolute top-16 left-8 md:left-16 pointer-events-none select-none" aria-hidden="true">
           <span className="font-heading text-[clamp(10rem,30vw,22rem)] font-light leading-none text-[#0a1f36]/[0.03] lg:text-white/[0.05]">M</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">La nostra cucina</span>
@@ -375,7 +369,7 @@ export default function Menu() {
       </section>
 
       {/* MENU SECTIONS */}
-      <section className="py-[var(--space-xl)] bg-[#fffef9]">
+      <section className="py-16 md:py-24 bg-[#fffef9]">
         {menuSections.map((section, sIdx) => {
           const photoBreak = photoBreaks.find(pb => pb.afterSection === sIdx)
           return (
@@ -395,21 +389,19 @@ export default function Menu() {
       </section>
 
       {/* DOLCI PHOTO */}
-      <section className="bg-[#fffef9] pb-[var(--space-lg)] px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="max-w-[500px] mx-auto">
-            <div className="overflow-hidden">
-              <img src={dessert} alt="Dolce della casa" className="w-full aspect-square object-cover" />
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#0a1f36]/25 mt-3 text-center">I nostri dolci artigianali</p>
-            </div>
+      <section className="bg-[#fffef9] pb-16 md:pb-20 px-6 md:px-10 lg:px-16">
+        <div className="w-full">
+          <div className="overflow-hidden max-w-lg mx-auto lg:mx-0">
+            <img src={dessert} alt="Dolce della casa" className="w-full aspect-square object-cover" />
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#0a1f36]/25 mt-3">I nostri dolci artigianali</p>
           </div>
         </div>
       </section>
 
       {/* PIZZERIA */}
-      <section className="bg-[#fffef9] py-[var(--space-lg)] px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="bg-[#0a1f36] px-8 md:px-16 py-14 md:py-20">
+      <section className="bg-[#fffef9] py-12 md:py-16 px-6 md:px-10 lg:px-16">
+        <div className="w-full">
+          <div className="bg-[#0a1f36] px-8 md:px-16 py-12 md:py-16">
             <div className="max-w-xl mx-auto lg:mx-0 lg:ml-auto">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-[1px] bg-[#c4a05c]" />
@@ -427,8 +419,8 @@ export default function Menu() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0a1f36] py-[var(--space-lg)] px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <section className="bg-[#0a1f36] py-20 md:py-24 px-6 md:px-10 lg:px-16">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
             Trovato il tuo piatto <span className="italic text-[#c4a05c]">preferito?</span>
           </h2>

@@ -32,7 +32,7 @@ export default function Footer() {
 
       <div ref={lineRef} className="h-[1px] bg-[#c4a05c]/30" />
 
-      <div className="relative z-10 px-6 md:px-10 lg:px-16 pt-20 pb-10">
+      <div className="relative z-10 px-6 md:px-10 lg:px-16 pt-16 md:pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8">
           <div className="md:col-span-5 md:pr-12">
             <Link to="/" className="inline-block mb-8">

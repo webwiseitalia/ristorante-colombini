@@ -59,7 +59,7 @@ export default function Gallery() {
           <span className="font-heading text-[clamp(10rem,30vw,22rem)] font-light leading-none text-white/[0.02]">G</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Le nostre immagini</span>
@@ -71,7 +71,7 @@ export default function Gallery() {
 
       {/* FILTER - right aligned */}
       <div className="bg-[#fffef9] pt-10 pb-6 px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto flex flex-wrap justify-end gap-3">
+        <div className="w-full flex flex-wrap justify-end gap-3">
           {categories.map(cat => (
             <button
               key={cat.id}
@@ -90,7 +90,7 @@ export default function Gallery() {
 
       {/* GRID - Broken masonry with 12-col grid, varied spans, overlapping items */}
       <section className="pb-32 pt-4 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
-        <div className="max-w-[1400px] mx-auto -mt-2">
+        <div className="w-full -mt-2">
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 auto-rows-[minmax(180px,auto)]">
             <AnimatePresence mode="popLayout">
               {filteredItems.map((item, idx) => (
@@ -122,14 +122,14 @@ export default function Gallery() {
       <div className="bg-[#f9f3e8] h-px w-full" />
 
       {/* INSTAGRAM CTA - asymmetric, content pushed right */}
-      <section className="bg-[#0a1f36] py-28 md:py-36 px-6 md:px-10 lg:px-16 relative overflow-hidden">
+      <section className="bg-[#0a1f36] py-20 md:py-28 px-6 md:px-10 lg:px-16 relative overflow-hidden">
         {/* Large decorative watermark on left */}
         <div className="absolute top-1/2 -translate-y-1/2 -left-16 pointer-events-none select-none" aria-hidden="true">
           <span className="font-heading text-[clamp(14rem,40vw,28rem)] font-light leading-none text-white/[0.02]">IG</span>
         </div>
         {/* Asymmetric gold accent bar */}
         <div className="absolute top-0 right-[15%] w-px h-24 bg-[#c4a05c]/20" />
-        <div className="max-w-[1400px] mx-auto">
+        <div className="w-full">
           <div className="md:ml-auto md:w-[55%] lg:w-[45%] relative">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />

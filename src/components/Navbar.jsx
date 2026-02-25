@@ -16,6 +16,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
 
+  // When not scrolled: always white text (all heroes have dark areas)
+  // When scrolled: dark text (cream background appears)
+  const isDark = scrolled
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -47,7 +51,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between px-6 md:px-10 lg:px-16 h-20 md:h-24">
           <Link to="/" className="relative z-50">
             <div className="flex flex-col">
-              <span className="font-heading text-[clamp(1.3rem,2.5vw,2rem)] font-light tracking-[0.02em] text-[#0a1f36] leading-none">
+              <span className={`font-heading text-[clamp(1.3rem,2.5vw,2rem)] font-light tracking-[0.02em] leading-none transition-colors duration-500 ${isDark ? 'text-[#0a1f36]' : 'text-white'}`}>
                 Colombini
               </span>
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#c4a05c] font-bold mt-1">
@@ -62,10 +66,10 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`relative px-4 py-2 text-[11px] uppercase tracking-[0.2em] font-bold transition-colors duration-300 ${
-                    location.pathname === item.href
-                      ? 'text-[#0a1f36]'
-                      : 'text-[#0a1f36]/50 hover:text-[#0a1f36]'
+                  className={`relative px-4 py-2 text-[11px] uppercase tracking-[0.2em] font-bold transition-colors duration-500 ${
+                    isDark
+                      ? (location.pathname === item.href ? 'text-[#0a1f36]' : 'text-[#0a1f36]/50 hover:text-[#0a1f36]')
+                      : (location.pathname === item.href ? 'text-white' : 'text-white/60 hover:text-white')
                   }`}
                   style={{ marginLeft: i === 3 ? '2rem' : undefined }}
                 >
@@ -80,7 +84,11 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <Link to="/prenota" className="ml-10 btn-primary text-[10px] py-3 px-8">
+            <Link to="/prenota" className={`ml-10 text-[10px] py-3 px-8 font-bold uppercase tracking-[0.2em] transition-all duration-500 ${
+              isDark
+                ? 'btn-primary'
+                : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white hover:text-[#0a1f36]'
+            }`}>
               Prenota
             </Link>
           </div>
@@ -92,17 +100,17 @@ export default function Navbar() {
           >
             <motion.span
               animate={isOpen ? { rotate: 45, y: 8, width: 28 } : { rotate: 0, y: 0, width: 28 }}
-              className="block h-[1.5px] bg-[#0a1f36] origin-center"
+              className={`block h-[1.5px] origin-center transition-colors duration-500 ${isDark || isOpen ? 'bg-[#0a1f36]' : 'bg-white'}`}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             />
             <motion.span
               animate={isOpen ? { opacity: 0, x: 10 } : { opacity: 1, x: 0, width: 20 }}
-              className="block h-[1.5px] bg-[#0a1f36]"
+              className={`block h-[1.5px] transition-colors duration-500 ${isDark || isOpen ? 'bg-[#0a1f36]' : 'bg-white'}`}
               transition={{ duration: 0.3 }}
             />
             <motion.span
               animate={isOpen ? { rotate: -45, y: -8, width: 28 } : { rotate: 0, y: 0, width: 14 }}
-              className="block h-[1.5px] bg-[#0a1f36] origin-center"
+              className={`block h-[1.5px] origin-center transition-colors duration-500 ${isDark || isOpen ? 'bg-[#0a1f36]' : 'bg-white'}`}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             />
           </button>

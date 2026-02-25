@@ -38,7 +38,7 @@ export default function Contatti() {
           <span className="font-heading text-[clamp(10rem,28vw,22rem)] font-light leading-none text-white/[0.02]">D</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Come raggiungerci</span>
@@ -64,7 +64,7 @@ export default function Contatti() {
 
         {/* Contact details overlapping the bottom of the map */}
         <div className="px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div ref={contactRef} className="bg-[#fffef9] -mt-20 md:-mt-28 relative z-10 shadow-2xl shadow-black/[0.06] p-8 md:p-12 lg:p-16">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
                 <div>
@@ -101,12 +101,12 @@ export default function Contatti() {
       </section>
 
       {/* HOURS - horizontal schedule cards instead of vertical list */}
-      <section ref={hoursRef} className="bg-[#f9f3e8] py-24 md:py-32 px-6 md:px-10 lg:px-16 relative overflow-hidden">
+      <section ref={hoursRef} className="bg-[#f9f3e8] py-20 md:py-28 px-6 md:px-10 lg:px-16 relative overflow-hidden">
         {/* Decorative watermark */}
         <div className="absolute top-1/2 -translate-y-1/2 -right-12 pointer-events-none select-none" aria-hidden="true">
           <span className="font-heading text-[clamp(10rem,20vw,18rem)] font-light leading-none text-[#0a1f36]/[0.02]">H</span>
         </div>
-        <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="w-full relative z-10">
           <div className="mb-12 md:mb-16">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
@@ -149,8 +149,8 @@ export default function Contatti() {
       </section>
 
       {/* DISTANCES - varied card sizes for visual interest */}
-      <section className="bg-[#fffef9] py-24 md:py-32 px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="bg-[#fffef9] py-20 md:py-28 px-6 md:px-10 lg:px-16">
+        <div className="w-full">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-[1px] bg-[#c4a05c]" />
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Come arrivare</span>
@@ -189,8 +189,8 @@ export default function Contatti() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0a1f36] py-24 md:py-28 px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <section className="bg-[#0a1f36] py-20 md:py-24 px-6 md:px-10 lg:px-16">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
             Ti <span className="italic text-[#c4a05c]">aspettiamo</span>
           </h2>

@@ -38,7 +38,7 @@ export default function Prenota() {
           <span className="font-heading text-[clamp(10rem,28vw,22rem)] font-light leading-none text-white/[0.02]">P</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Prenotazione consigliata</span>
@@ -53,8 +53,8 @@ export default function Prenota() {
       </section>
 
       {/* FORM */}
-      <section className="py-[var(--space-xl)] px-6 md:px-10 lg:px-16 bg-[#fffef9]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+      <section className="py-16 md:py-24 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
           {/* Form area */}
           <div ref={formRef} className="lg:col-span-7">
             <AnimatePresence mode="wait">

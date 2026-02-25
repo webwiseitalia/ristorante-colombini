@@ -29,7 +29,7 @@ export default function Cantina() {
           <span className="font-heading text-[clamp(10rem,28vw,22rem)] font-light leading-none text-white/[0.03]">V</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">I nostri vini</span>
@@ -45,8 +45,8 @@ export default function Cantina() {
       </section>
 
       {/* WINES - Featured wines get card treatment, unfeatured in 2-col layout */}
-      <section className="py-24 md:py-32 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-20 md:py-28 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
+        <div className="w-full">
           <div className="max-w-2xl mb-16 md:mb-24">
             <p className="text-[#0a1f36]/60 leading-[1.8]">
               Una selezione accurata di <strong className="text-[#0a1f36] font-normal">vini laziali e pontini</strong>, scelti per esaltare i sapori della nostra cucina. Dai vitigni autoctoni del Lazio alle etichette più pregiate del territorio.
@@ -115,8 +115,8 @@ export default function Cantina() {
       </section>
 
       {/* TERRITORY - image overlaps edge of section, breaks out of grid */}
-      <section ref={territoryRef} className="bg-[#f9f3e8] py-24 md:py-32 px-6 md:px-10 lg:px-16 relative overflow-visible">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
+      <section ref={territoryRef} className="bg-[#f9f3e8] py-20 md:py-28 px-6 md:px-10 lg:px-16 relative overflow-visible">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
           {/* Image that breaks out of the section on the left */}
           <div className="lg:col-span-4 hidden lg:block relative">
             <div className="aspect-[3/4] overflow-hidden -ml-16 xl:-ml-24 relative z-10 shadow-2xl shadow-black/10">
@@ -146,8 +146,8 @@ export default function Cantina() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#722f37] py-24 md:py-28 px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <section className="bg-[#722f37] py-20 md:py-24 px-6 md:px-10 lg:px-16">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
             Un calice in <span className="italic text-[#c4a05c]">buona compagnia</span>
           </h2>

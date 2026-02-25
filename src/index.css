@@ -178,6 +178,18 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translateX(-50%); }
 }
 
+/* --- PHOTO SLIDER --- */
+
+.photo-slider-track {
+  animation: photo-slide 25s linear infinite;
+  will-change: transform;
+}
+
+@keyframes photo-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* --- EDITORIAL ELEMENTS --- */
 
 .editorial-line {

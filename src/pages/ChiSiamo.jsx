@@ -30,7 +30,7 @@ export default function ChiSiamo() {
           <span className="font-heading text-[clamp(10rem,30vw,25rem)] font-light leading-none text-white/[0.02]">C</span>
         </div>
         <div className="relative z-10 w-full px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-[#c4a05c]" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">La nostra storia</span>
@@ -45,8 +45,8 @@ export default function ChiSiamo() {
       </section>
 
       {/* STORY — broken grid: text 6 cols, image overlaps into text via negative margin, pull-quote breaks out */}
-      <section className="py-[var(--space-xl)] px-6 md:px-10 lg:px-16 bg-[#fffef9]">
-        <div ref={storyRef} className="max-w-[1400px] mx-auto">
+      <section className="py-20 md:py-28 px-6 md:px-10 lg:px-16 bg-[#fffef9]">
+        <div ref={storyRef} className="w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
             {/* Text — 6 columns, right-padded to leave room, but image will intrude */}
             <div className="lg:col-span-6 lg:pr-4 relative z-10">
@@ -74,7 +74,7 @@ export default function ChiSiamo() {
           </div>
 
           {/* Pull-quote — breaks out wide, shifted right to cross the grid boundary */}
-          <div className="lg:-mr-16 lg:ml-[15%] -mt-12 relative z-20">
+          <div className="lg:-mr-16 lg:ml-[15%] -mt-8 relative z-20">
             <blockquote className="bg-[#0a1f36] text-[#fffef9] py-10 px-8 md:px-14 lg:px-20">
               <p className="font-heading italic text-[clamp(1.3rem,2.5vw,2rem)] leading-[1.4] font-light max-w-3xl">
                 "Un luogo dove sentirsi a casa, gustando piatti della tradizione preparati con maestria."
@@ -95,8 +95,8 @@ export default function ChiSiamo() {
       {/* CHEF — image wider (5 cols), text narrower (5 cols) offset vertically, quote bleeds across both */}
       <section className="bg-[#f9f3e8] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[30%] h-full bg-[#0a1f36]/[0.02]" />
-        <div ref={chefRef} className="pt-[var(--space-xl)] px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
+        <div ref={chefRef} className="pt-20 md:pt-28 px-6 md:px-10 lg:px-16">
+          <div className="w-full">
             <div className="grid grid-cols-1 lg:grid-cols-10 gap-0 items-start">
               {/* Image — 5 cols, flush left, taller presence */}
               <div className="lg:col-span-5 order-2 lg:order-1 relative">
@@ -127,7 +127,7 @@ export default function ChiSiamo() {
             </div>
 
             {/* Quote — bleeds across full width, overlapping both columns with negative top margin */}
-            <div className="-mt-16 md:-mt-24 relative z-10 lg:-mx-8 pb-[var(--space-xl)]">
+            <div className="-mt-16 md:-mt-24 relative z-10 lg:-mx-8 pb-20 md:pb-28">
               <blockquote className="bg-[#722f37] py-12 px-8 md:px-16 lg:px-24">
                 <p className="font-heading italic text-[clamp(1.4rem,3vw,2.6rem)] text-[#fffef9] leading-[1.3] font-light max-w-4xl mx-auto text-center">
                   "La cucina è come la famiglia: ci vuole amore, pazienza e ingredienti buoni."
@@ -140,13 +140,13 @@ export default function ChiSiamo() {
       </section>
 
       {/* TIMELINE — variable visual weight: first large, then progressively smaller, alternating alignment */}
-      <section className="bg-[#0a1f36] py-[var(--space-xl)] px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="bg-[#0a1f36] py-20 md:py-28 px-6 md:px-10 lg:px-16">
+        <div className="w-full">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-[1px] bg-[#c4a05c]" />
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#c4a05c] font-bold">Il percorso</span>
           </div>
-          <h2 className="font-heading font-light text-[var(--fluid-lg)] leading-[0.95] text-white mb-16 md:mb-24 max-w-xl">
+          <h2 className="font-heading font-light text-[var(--fluid-lg)] leading-[0.95] text-white mb-14 md:mb-20 max-w-xl">
             Anno dopo
             <br />
             <span className="italic text-[#c4a05c]">anno</span>
@@ -206,9 +206,9 @@ export default function ChiSiamo() {
       </section>
 
       {/* VALUES — staggered offsets, one value spans wider, photo overlaps into values area */}
-      <section className="py-[var(--space-xl)] px-6 md:px-10 lg:px-16 bg-[#fffef9] relative">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="font-heading font-light text-[var(--fluid-lg)] leading-[0.95] text-[#0a1f36] mb-16 md:mb-24 max-w-xl text-right ml-auto">
+      <section className="py-20 md:py-28 px-6 md:px-10 lg:px-16 bg-[#fffef9] relative">
+        <div className="w-full">
+          <h2 className="font-heading font-light text-[var(--fluid-lg)] leading-[0.95] text-[#0a1f36] mb-14 md:mb-20 max-w-xl text-right ml-auto">
             I nostri
             <br />
             <span className="italic">valori</span>
@@ -263,8 +263,8 @@ export default function ChiSiamo() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0a1f36] py-[var(--space-lg)] px-6 md:px-10 lg:px-16">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <section className="bg-[#0a1f36] py-20 md:py-24 px-6 md:px-10 lg:px-16">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <h2 className="font-heading font-light text-[var(--fluid-md)] text-white">
             Vieni a <span className="italic text-[#c4a05c]">conoscerci</span>
           </h2>
